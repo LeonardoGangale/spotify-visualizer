@@ -1,4 +1,4 @@
-let redirect_uri = "http://127.0.0.1:5500/index.html"
+let redirect_uri = "https://main.dhi1xeh1lcv1x.amplifyapp.com/"
 
 let client_id = "47a5f7bc78c2462e9d2a865999c42942"
 let client_secret = "2f1a872c641944fca3db0cfee225899f"
