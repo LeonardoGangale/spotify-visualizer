@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Circular';
+    src: url('ProductSans-Black.ttf');
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0.01;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#alert-text {
+    font-size: 70px;
+    font-family: 'Circular';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.player-container {
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 90%;
+    height: 700px;
+    position: absolute;
+    left: 5%;
+    top: calc(50vh - 350px);
+    border-radius: 20px;
+    display: none;
+}
+
+#track-image {
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    top: 10%;
+    margin-left: 70px;
+    border-radius: 10px;
+}
+
+.info-container {
+    width: 50%;
+    margin: 0 0 0 100px;
+    position: relative;
+    top: 10%;
+}
+
+#track-title {
+    width: 100%;
+    font-size: 50px;
+    font-family: 'Circular';
+    margin: 15px 0px 15px 0px;
+    text-decoration: none;
+}
+
+#track-title:hover {
+    text-decoration: underline;
+}
+
+#artists-names {
+    display: flex;
+}
+
+.bottom-container {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 200px;
+    justify-content: space-between;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #181818;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 12px;
+    padding: 0 10px 0 10px;
+}
+
+#progress-background {
+    height: 8px;
+    width: 78%;
+    background-color: #555555;
+    border-radius: 3px;
+}
+
+#progress-foreground {
+    height: 100%;
+    background-color: #fafafa;
+    transition: 1s linear;
+    border-radius: 3px;
+}
+
+.progress-text {
+    color: #fafafa;
+    font-family: "Circular";
+    font-size: 110%;
+}
+
+#volume-percentage-container {
+    width: 18%;
+    height: 100%;
+    background-color: #181818;
+    border-radius: 12px;
+}

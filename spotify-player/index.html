@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>SPOTIFY API</title>
+</head>
+
+<body onload="onPageLoad()">
+
+    <h1 id="alert-text">Try playing a song first!</h1>
+    <div class="player-container">
+        <img id="track-image" draggable="false">
+
+        <div class="info-container">
+            <a target="_blank" id="track-title"></a>
+            <div id="artists-names"></div>
+
+            <div class="bottom-container">
+                <div id="progress-bar">
+                    <p class="progress-text" id="pg-text">0 : 00</p>
+                    <div id="progress-background">
+                        <div id="progress-foreground"></div>
+                    </div>
+                    <p class="progress-text" id="dt-text">0 : 00</p>
+                </div>
+
+                <!-- <div id="volume-percentage-container">
+
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
