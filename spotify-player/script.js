@@ -64,7 +64,6 @@ function callAuthorizationApi(body){
 function handleAuthorizationResponse(){
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
-        console.log(data);
         var data = JSON.parse(this.responseText);
         if ( data.access_token != undefined ){
             access_token = data.access_token;
@@ -77,7 +76,6 @@ function handleAuthorizationResponse(){
         onPageLoad();
     }
     else {
-        console.log(this.responseText);
         alert(this.responseText);
     }
 }
@@ -97,9 +95,6 @@ function setTrackImage (imagePath) {
         }else{
             playerContainer.style.background = `rgb(${RGB.avgRed}, ${RGB.avgGreen}, ${RGB.avgBlue}, 1)`;
         }
-        
-        
-        console.log((RGB.avgRed + RGB.avgGreen + RGB.avgBlue)/3);
         
         if((RGB.avgRed + RGB.avgGreen + RGB.avgBlue)/3 > 150){
             trackTitle.style.color = "black";
@@ -146,16 +141,21 @@ function calculateAverageRGB(imageData) {
             minBlue = imageData.data[i+2];
         }
 
-      totalRed += imageData.data[i];
-      totalGreen += imageData.data[i + 1];
-      totalBlue += imageData.data[i + 2];
+        totalRed += imageData.data[i];
+        totalGreen += imageData.data[i + 1];
+        totalBlue += imageData.data[i + 2];
     }
 
-    console.log(minRed, minGreen, minBlue)
     const pixelCount = imageData.data.length / 1024;
     const averageRed = totalRed / pixelCount;
     const averageGreen = totalGreen / pixelCount;
     const averageBlue = totalBlue / pixelCount;
+
+    if((averageBlue + averageGreen + averageRed)/3 < 10){
+        minRed = maxRed;
+        minGreen = maxGreen;
+        minBlue = maxBlue;
+    }
 
     return {
       red1: maxRed,
@@ -174,7 +174,6 @@ function calculateAverageRGB(imageData) {
 
 function getAverageRGB(image) {
     const imageElement = image;
-    console.log(imageElement)
 
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -259,7 +258,7 @@ function setProgressbarWidth(progress, duration){
 }
 
 function setVolume(percentage){
-    console.log(percentage, "%")
+    //console.log(percentage, "%")
 }  
 
 setInterval(async () => {makeRequest()}, 1000)

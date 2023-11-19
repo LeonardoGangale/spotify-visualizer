@@ -56,12 +56,10 @@ function callAuthorizationApi(body){
 function handleAuthorizationResponse(){
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
-        console.log(data);
         var data = JSON.parse(this.responseText);
         if ( data.access_token != undefined ){
             let access_token = data.access_token;
             localStorage.setItem("access_token", access_token);
-            console.log(access_token, data)
         }
         if ( data.refresh_token  != undefined ){
             let refresh_token = data.refresh_token;
@@ -71,7 +69,6 @@ function handleAuthorizationResponse(){
         goToPlayer()
     }
     else {
-        console.log(this.responseText);
         alert(this.responseText);
     }
 }
@@ -88,7 +85,7 @@ const redirect = async () => {
 }
 
 function goToPlayer() {
-    window.location.href = "http://127.0.0.1:5500/spotify-player/index.html"
+    window.location.href += "spotify-player/"
 }
 
 /* ---------------------------- STYLE  ----------------------------*/
