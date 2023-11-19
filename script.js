@@ -85,7 +85,7 @@ const redirect = async () => {
 }
 
 function goToPlayer() {
-    window.location.href += "spotify-player/"
+    window.location.href = "https://main.dhi1xeh1lcv1x.amplifyapp.com/spotify-player/"
 }
 
 /* ---------------------------- STYLE  ----------------------------*/
