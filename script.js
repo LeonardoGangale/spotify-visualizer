@@ -1,5 +1,6 @@
-let redirect_uri = "https://main.dhi1xeh1lcv1x.amplifyapp.com/"
-
+let redirect_uri = "http://127.0.0.1:5500/index.html"
+// "https://main.dhi1xeh1lcv1x.amplifyapp.com/"
+8
 let client_id = "47a5f7bc78c2462e9d2a865999c42942"
 let client_secret = "2f1a872c641944fca3db0cfee225899f"
 
@@ -79,13 +80,15 @@ const redirect = async () => {
     url += "&response_type=code"
     url += "&redirect_uri=" + encodeURI(redirect_uri)
     url += "&show_dialog=true"
-    url += "&scope=user-read-currently-playing"
+    //url += "&scope=user-read-currently-playing"
+    url += "&scope=user-library-modify"
+
 
     window.location.href = url;
 }
 
 function goToPlayer() {
-    window.location.href = "https://main.dhi1xeh1lcv1x.amplifyapp.com/spotify-player/"
+    window.location.href = "http://127.0.0.1:5500/spotify-player"
 }
 
 /* ---------------------------- STYLE  ----------------------------*/

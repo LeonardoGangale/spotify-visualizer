@@ -1,10 +1,19 @@
 const TOKEN = "https://accounts.spotify.com/api/token"
+let spotifyURI = ""
+let spotifyID = ""
+
 const alertText = document.getElementById("alert-text")
+const spotifyLogo = document.getElementById("spotify-logo")
 const image = document.getElementById("track-image")
 const body = document.getElementsByTagName("body")[0]
 const playerContainer = document.getElementsByClassName("player-container")[0];
 const trackTitle =  document.getElementById("track-title");
 const artistsNames = document.getElementById("artists-names")
+const likedIconOutline = document.getElementById("svg-like-outline")
+const likedIconFilled = document.getElementById("svg-like-filled")
+let liked = false
+let methodLikeSong = ""
+
 let artistsNamesColor = "#ffffff00"
 
 function onPageLoad() {
@@ -14,7 +23,6 @@ function onPageLoad() {
 }
 
 async function makeRequest(){
-
     let response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
         method: "GET",
         headers: {
@@ -23,25 +31,43 @@ async function makeRequest(){
             "Authorization": "Bearer " + authorization_code,
         }}).then((response) => {
             if(response.status === 204){
-                body.style.background = "white"
-                alertText.style.display = "block"
-                playerContainer.style.display = "none"
+                body.style.background = "white";
+                alertText.style.display = "block";
+                playerContainer.style.display = "none";
             } else {
                 response.json().then(
                     (data) => { 
                         if(response.status === 401){
-                            refreshAccessToken()
+                            refreshAccessToken();
                         }
-                        alertText.style.display = "none"
-                        playerContainer.style.display = "flex"
-                        setTrackImage(data.item.album.images[0].url)
-                        setTrackTitle(data.item.name, data.item.external_urls.spotify)
-                        setArtists(data.item.artists)
-                        setProgressbarWidth(data.progress_ms, data.item.duration_ms)
+                        // style
+                        alertText.style.display = "none";
+                        playerContainer.style.display = "flex";
+                        
+                        spotifyURI = data.item.uri;
+                        spotifyID = spotifyURI.slice(14)
+
+                        setTrackImage(data.item.album.images[0].url); 
+                        setTrackTitle(data.item.name, data.item.external_urls.spotify);
+                        setArtists(data.item.artists);
+                        setProgressbarWidth(data.progress_ms, data.item.duration_ms);
                     }
                 );
             }
         })
+
+    liked = await checkIsLiked()
+    if (spotifyID !== ""){
+        if (liked){
+            methodLikeSong = "DELETE";
+            likedIconOutline.style.display = "none"
+            likedIconFilled.style.display = "block"
+        } else{
+            methodLikeSong = "PUT";
+            likedIconOutline.style.display = "block"
+            likedIconFilled.style.display = "none"
+        }
+    } 
 }
 
 function refreshAccessToken(){
@@ -98,10 +124,12 @@ function setTrackImage (imagePath) {
         
         if((RGB.avgRed + RGB.avgGreen + RGB.avgBlue)/3 > 150){
             trackTitle.style.color = "black";
-            artistsNamesColor = "black"
+            artistsNamesColor = "black";
+            spotifyLogo.src = "Spotify_Logo_RGB_Black.png"
         } else {
             trackTitle.style.color = "white";
             artistsNamesColor = "white"
+            spotifyLogo.src = "Spotify_Logo_RGB_White.png";
         }
     });
 }
@@ -191,7 +219,6 @@ function getAverageRGB(image) {
 function setTrackTitle (title, linkToTrack) {
     trackTitle.innerHTML = title
     trackTitle.href = linkToTrack
-
 }
 
 function setArtists(namesObject){
@@ -257,8 +284,39 @@ function setProgressbarWidth(progress, duration){
     progressText.innerHTML = convertMillisecond(progress)
 }
 
-function setVolume(percentage){
-    //console.log(percentage, "%")
-}  
+async function checkIsLiked(){
+    let url = "https://api.spotify.com/v1/me/tracks/contains?ids=";
+    url += spotifyID;
+    let response = await fetch(url, {
+        headers: {"Content-Type": "application/json",
+                "Authorization": "Bearer " + authorization_code},
+        method: "GET"
+    })
+
+    let data = await response.json();
+    return data[0];
+}
+
+async function likeSong(){
+    let url = "https://api.spotify.com/v1/me/tracks?ids=";
+    url += spotifyID;
+
+    let response = await fetch(url, {
+        headers: {"Content-Type": "application/json",
+                "Authorization": "Bearer " + authorization_code},
+        method: methodLikeSong,
+        body: [spotifyID]
+    })
+}
+
+// async function changeVolume(){
+//     let url = "https://api.spotify.com/v1/me/player/volume?";
+//     url += "volume_percent=50";
+
+//     let response = fetch(url, {
+//         headers: {"Content-Type": "application/json",
+//                 "Authorization": "Bearer " + authorization_code},
+//         method: "PUT"})
+// }
 
 setInterval(async () => {makeRequest()}, 1000)
