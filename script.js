@@ -88,7 +88,12 @@ const redirect = async () => {
 }
 
 function goToPlayer() {
-    window.location.href = "http://127.0.0.1:5500/spotify-player"
+    if(window.location.href.includes("http://127.0.0.1:5500")){
+        window.location.href = "http://127.0.0.1:5500/spotify-player"
+    } else {
+        window.location.href += "/spotify-player"
+    }
+    
 }
 
 /* ---------------------------- STYLE  ----------------------------*/
