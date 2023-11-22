@@ -1,4 +1,4 @@
-let redirect_uri = "http://127.0.0.1:5500/index.html"
+let redirect_uri = ""
 // "https://main.dhi1xeh1lcv1x.amplifyapp.com/"
 8
 let client_id = "47a5f7bc78c2462e9d2a865999c42942"
@@ -11,6 +11,13 @@ localStorage.setItem("client_id", client_id)
 localStorage.setItem("client_secret", client_secret)
 
 function onPageLoad() {
+    if(window.location.href.includes("http://127.0.0.1:5500")){
+        redirect_uri = "http://127.0.0.1:5500/index.html"
+    } else {
+        redirect_uri = "https://main.dhi1xeh1lcv1x.amplifyapp.com/"
+    }
+
+
     client_id = localStorage.getItem("client_id")
     client_secret = localStorage.getItem("client_secret")
 
