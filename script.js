@@ -98,7 +98,7 @@ function goToPlayer() {
     if(window.location.href.includes("http://127.0.0.1:5500")){
         window.location.href = "http://127.0.0.1:5500/spotify-player"
     } else {
-        window.location.href += "/spotify-player"
+        window.location.href += "spotify-player"
     }
     
 }
