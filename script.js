@@ -88,8 +88,8 @@ const redirect = async (changeAccount) => {
     url += "&redirect_uri=" + encodeURI(redirect_uri)
     url += "&show_dialog=" + changeAccount;
     url += "&scope=user-read-currently-playing"
-    url += "&scope=user-library-modify"
-    url += "&scope=user-library-read"
+    url += " user-library-modify"
+    url += " user-library-read"
 
 
     window.location.href = url;
