@@ -20,6 +20,9 @@ function onPageLoad() {
     window.client_id = localStorage.getItem("client_id")
     window.client_secret = localStorage.getItem("client_secret")
     window.authorization_code = localStorage.getItem("access_token")
+    if(window.authorization_code === null){
+        window.location = window.location.href.replace("/spotify-player/", "")
+    }
 }
 
 async function makeRequest(){

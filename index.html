@@ -18,8 +18,12 @@
         </div>
 
 
-
-        <input class="button-input" type="button" value="Log in" onclick="redirect()">
+        <div class="buttons">
+            <input class="button-input" type="button" value="Log in" onclick="redirect(false)">
+            <h2>or</h2>
+            <input class="button-input btn-2" type="button" value="Choose another account" onclick="redirect(true)">
+        </div>
+        <p id="credits">Made by <a href="https://github.com/LeonardoGangale" target="_blank">Leonardo Gangale</a></p>
     </form>
 </body>
 

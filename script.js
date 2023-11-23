@@ -1,6 +1,6 @@
 let redirect_uri = ""
 // "https://main.dhi1xeh1lcv1x.amplifyapp.com/"
-8
+
 let client_id = "47a5f7bc78c2462e9d2a865999c42942"
 let client_secret = "2f1a872c641944fca3db0cfee225899f"
 
@@ -81,14 +81,15 @@ function handleAuthorizationResponse(){
     }
 }
 
-const redirect = async () => {
+const redirect = async (changeAccount) => {
     let url = AUTHORIZE
     url += "?client_id=" + client_id
     url += "&response_type=code"
     url += "&redirect_uri=" + encodeURI(redirect_uri)
-    url += "&show_dialog=true"
-    //url += "&scope=user-read-currently-playing"
+    url += "&show_dialog=" + changeAccount;
+    url += "&scope=user-read-currently-playing"
     url += "&scope=user-library-modify"
+    url += "&scope=user-library-read"
 
 
     window.location.href = url;

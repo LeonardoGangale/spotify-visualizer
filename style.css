@@ -10,15 +10,18 @@ body {
     font-family: 'Circular';
 }
 
+a {
+    color: black;
+}
+
 .input-container {
-    height: 600px;
+    height: 500px;
     width: 400px;
     background-color: #fafafa;
     position: absolute;
     left: calc(50% - 200px);
-    top: calc(50% - 300px);
+    top: calc(50% - 250px);
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
     border-radius: 30px;
@@ -31,6 +34,7 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 30px;
 }
 
 .title {
@@ -64,16 +68,36 @@ body {
     transition: 0.1s ease-in-out;
 }
 
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 35%;
+}
+
 .button-input {
-    width: 50%;
+    width: 70%;
     height: 75px;
-    background-color: #1DB954;
+    background-color: #1db854;
     border: none;
     border-radius: 20px;
     font-size: 20px;
     font-family: 'Circular';
 }
 
+.btn-2 {
+    background-color: white;
+    border: 2px solid #1db854;
+    transform: scale(70%);
+}
+
 .text-input:focus {
-    border-bottom: 4px solid #1DB954;
+    border-bottom: 4px solid #1db854;
+}
+
+#credits {
+    position: absolute;
+    bottom: 4px;
 }
